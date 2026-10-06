@@ -1,212 +1,1123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Vinay Sir!</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <meta charset="UTF-8">
 
-body{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    font-family:'Segoe UI', sans-serif;
-    background: linear-gradient(-45deg,#ff6b6b,#ff9f43,#feca57,#48dbfb);
-    background-size:400% 400%;
-    animation: gradientBG 10s ease infinite;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-@keyframes gradientBG{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
+    <title>Happy Birthday Vinay Sir!</title>
 
-/* Birthday Card */
-.card{
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border-radius:20px;
-    padding:40px;
-    text-align:center;
-    color:white;
-    width:700px;
-    box-shadow:0 0 25px rgba(255,255,255,0.4);
-    animation: glow 2s infinite alternate;
-    z-index:10;
-}
 
-@keyframes glow{
-    from{
-        box-shadow:0 0 20px #fff;
-    }
-    to{
-        box-shadow:0 0 40px gold;
-    }
-}
+    <style>
 
-h1{
-    font-size:3rem;
-    margin-bottom:20px;
-}
+        /* =========================================
+           RESET
+        ========================================= */
 
-.message{
-    font-size:1.3rem;
-    line-height:1.8;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.highlight{
-    color:#ffe66d;
-    font-weight:bold;
-}
 
-/* Typing Animation */
-.typing{
-    overflow:hidden;
-    white-space:nowrap;
-    border-right:3px solid white;
-    width:0;
-    margin:auto;
-    animation:
-        typing 4s steps(30,end) forwards,
-        blink 0.7s infinite;
-}
+        /* =========================================
+           BODY
+        ========================================= */
 
-@keyframes typing{
-    from{width:0}
-    to{width:100%}
-}
+        body {
 
-@keyframes blink{
-    50%{border-color:transparent;}
-}
+            width: 100vw;
+            height: 100vh;
 
-/* Balloons */
-.balloon{
-    position:absolute;
-    bottom:-150px;
-    font-size:60px;
-    animation: floatUp linear infinite;
-}
+            overflow: hidden;
 
-.balloon:nth-child(1){
-    left:10%;
-    animation-duration:10s;
-}
+            font-family: 'Segoe UI', sans-serif;
 
-.balloon:nth-child(2){
-    left:25%;
-    animation-duration:8s;
-}
+            display: flex;
 
-.balloon:nth-child(3){
-    left:70%;
-    animation-duration:11s;
-}
+            justify-content: center;
 
-.balloon:nth-child(4){
-    left:85%;
-    animation-duration:9s;
-}
+            align-items: center;
 
-@keyframes floatUp{
-    from{
-        transform:translateY(0);
-    }
-    to{
-        transform:translateY(-120vh);
-    }
-}
+            position: relative;
 
-/* Confetti */
-.confetti{
-    position:absolute;
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background:white;
-    animation: fall linear infinite;
-}
+            background:
+                linear-gradient(
+                    -45deg,
+                    #ff6b6b,
+                    #ff9f43,
+                    #feca57,
+                    #48dbfb
+                );
 
-@keyframes fall{
-    from{
-        transform:translateY(-100vh);
-    }
-    to{
-        transform:translateY(100vh);
-    }
-}
-</style>
+            background-size: 400% 400%;
+
+            animation:
+                gradientBG 10s ease infinite;
+
+        }
+
+
+        @keyframes gradientBG {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+
+        }
+
+
+        /* =========================================
+           SIDE IMAGES
+        ========================================= */
+
+        .side-image {
+
+            position: absolute;
+
+            width: 240px;
+            height: 310px;
+
+            object-fit: cover;
+
+            border-radius: 20px;
+
+            border: 4px solid white;
+
+            box-shadow:
+                0 0 25px rgba(255,255,255,0.7);
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            z-index: 2;
+
+        }
+
+
+        .left-image {
+
+            left: 25px;
+
+        }
+
+
+        .right-image {
+
+            right: 25px;
+
+        }
+
+
+        /* =========================================
+           MAIN FLIP CONTAINER
+        ========================================= */
+
+        .flip-container {
+
+            width: 850px;
+
+            height: 600px;
+
+            position: relative;
+
+            perspective: 1600px;
+
+            z-index: 20;
+
+        }
+
+
+        /* =========================================
+           FLIP CARD
+        ========================================= */
+
+        .flip-card {
+
+            width: 100%;
+
+            height: 100%;
+
+            position: relative;
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform 2s cubic-bezier(
+                    0.4,
+                    0.2,
+                    0.2,
+                    1
+                );
+
+        }
+
+
+        /*
+            Sideways 3D flip
+        */
+
+        .flip-card.flipped {
+
+            transform:
+                rotateY(180deg);
+
+        }
+
+
+        /* =========================================
+           FRONT + BACK
+        ========================================= */
+
+        .flip-front,
+        .flip-back {
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 100%;
+
+            top: 0;
+
+            left: 0;
+
+            border-radius: 30px;
+
+            backface-visibility: hidden;
+
+            -webkit-backface-visibility: hidden;
+
+            overflow: hidden;
+
+        }
+
+
+        /* =========================================
+           FRONT — IMG3
+        ========================================= */
+
+        .flip-front {
+
+            background: white;
+
+            border: 6px solid white;
+
+            box-shadow:
+                0 0 40px rgba(255,255,255,0.8);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+
+        .flip-front img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+
+            background: white;
+
+        }
+
+
+        /* =========================================
+           BACK — LARGE BIRTHDAY CARD
+        ========================================= */
+
+        .flip-back {
+
+            transform:
+                rotateY(180deg);
+
+            border:
+                6px solid white;
+
+            /*
+                SAME GRADIENT AS BODY
+            */
+
+            background:
+                linear-gradient(
+                    -45deg,
+                    #ff6b6b,
+                    #ff9f43,
+                    #feca57,
+                    #48dbfb
+                );
+
+            background-size: 400% 400%;
+
+            animation:
+                gradientBG 10s ease infinite;
+
+            color: white;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            box-shadow:
+                0 0 45px rgba(255,255,255,0.8);
+
+        }
+
+
+        /* =========================================
+           CARD CONTENT
+        ========================================= */
+
+        .birthday-content {
+
+            width: 90%;
+
+            max-height: 90%;
+
+            overflow-y: auto;
+
+            padding: 30px;
+
+            text-align: center;
+
+            /*
+                Glass effect
+            */
+
+            background:
+                rgba(255,255,255,0.12);
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
+
+            border-radius: 25px;
+
+            border:
+                2px solid rgba(
+                    255,
+                    255,
+                    255,
+                    0.35
+                );
+
+            box-shadow:
+                0 0 30px rgba(
+                    255,
+                    255,
+                    255,
+                    0.25
+                );
+
+        }
+
+
+        /* =========================================
+           HEADING
+        ========================================= */
+
+        .birthday-content h1 {
+
+            font-size: 3rem;
+
+            line-height: 1.2;
+
+            margin-bottom: 20px;
+
+            color: white;
+
+            text-shadow:
+                0 3px 10px rgba(0,0,0,0.2);
+
+        }
+
+
+        /* =========================================
+           SUB HEADING
+        ========================================= */
+
+        .typing {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 25px;
+
+            color: white;
+
+        }
+
+
+        /* =========================================
+           MESSAGE
+        ========================================= */
+
+        .message {
+
+            font-size: 1.25rem;
+
+            line-height: 1.7;
+
+            color: white;
+
+        }
+
+
+        .highlight {
+
+            color: #ffe66d;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================================
+           BALLOONS INSIDE CARD
+        ========================================= */
+
+        .card-balloon {
+
+            position: absolute;
+
+            font-size: 55px;
+
+            z-index: 3;
+
+            animation:
+                balloonFloat 4s ease-in-out infinite;
+
+        }
+
+
+        .card-balloon.one {
+
+            top: 20px;
+
+            left: 30px;
+
+        }
+
+
+        .card-balloon.two {
+
+            top: 20px;
+
+            right: 30px;
+
+        }
+
+
+        .card-balloon.three {
+
+            bottom: 20px;
+
+            left: 35px;
+
+        }
+
+
+        .card-balloon.four {
+
+            bottom: 20px;
+
+            right: 35px;
+
+        }
+
+
+        @keyframes balloonFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-15px);
+
+            }
+
+        }
+
+
+        /* =========================================
+           OUTSIDE BALLOONS
+        ========================================= */
+
+        .balloon {
+
+            position: absolute;
+
+            bottom: -150px;
+
+            font-size: 60px;
+
+            animation:
+                floatUp linear infinite;
+
+            z-index: 1;
+
+        }
+
+
+        .balloon:nth-of-type(1) {
+
+            left: 8%;
+
+            animation-duration: 10s;
+
+        }
+
+
+        .balloon:nth-of-type(2) {
+
+            left: 22%;
+
+            animation-duration: 8s;
+
+        }
+
+
+        .balloon:nth-of-type(3) {
+
+            left: 75%;
+
+            animation-duration: 11s;
+
+        }
+
+
+        .balloon:nth-of-type(4) {
+
+            left: 88%;
+
+            animation-duration: 9s;
+
+        }
+
+
+        @keyframes floatUp {
+
+            from {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            to {
+
+                transform:
+                    translateY(-120vh);
+
+            }
+
+        }
+
+
+        /* =========================================
+           CONFETTI
+        ========================================= */
+
+        .confetti {
+
+            position: absolute;
+
+            width: 9px;
+
+            height: 9px;
+
+            border-radius: 50%;
+
+            animation:
+                fall linear infinite;
+
+            z-index: 1;
+
+        }
+
+
+        @keyframes fall {
+
+            from {
+
+                transform:
+                    translateY(-100vh);
+
+            }
+
+            to {
+
+                transform:
+                    translateY(100vh);
+
+            }
+
+        }
+
+
+        /* =========================================
+           SCROLLBAR
+        ========================================= */
+
+        .birthday-content::-webkit-scrollbar {
+
+            width: 6px;
+
+        }
+
+
+        .birthday-content::-webkit-scrollbar-thumb {
+
+            background:
+                rgba(255,255,255,0.5);
+
+            border-radius: 10px;
+
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (max-width: 1200px) {
+
+            .flip-container {
+
+                width: 750px;
+
+                height: 550px;
+
+            }
+
+
+            .side-image {
+
+                width: 170px;
+
+                height: 240px;
+
+            }
+
+
+            .left-image {
+
+                left: 10px;
+
+            }
+
+
+            .right-image {
+
+                right: 10px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+            .flip-container {
+
+                width: 90vw;
+
+                height: 75vh;
+
+            }
+
+
+            .side-image {
+
+                display: none;
+
+            }
+
+
+            .birthday-content {
+
+                width: 94%;
+
+                padding: 20px;
+
+            }
+
+
+            .birthday-content h1 {
+
+                font-size: 2rem;
+
+            }
+
+
+            .typing {
+
+                font-size: 1.1rem;
+
+            }
+
+
+            .message {
+
+                font-size: 1rem;
+
+            }
+
+
+            .card-balloon {
+
+                font-size: 35px;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .flip-container {
+
+                width: 94vw;
+
+                height: 80vh;
+
+            }
+
+
+            .birthday-content h1 {
+
+                font-size: 1.6rem;
+
+            }
+
+
+            .typing {
+
+                font-size: 0.95rem;
+
+            }
+
+
+            .message {
+
+                font-size: 0.9rem;
+
+                line-height: 1.5;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<!-- Balloons -->
-<div class="balloon">🎈</div>
-<div class="balloon">🎈</div>
-<div class="balloon">🎈</div>
-<div class="balloon">🎈</div>
 
-<!-- Birthday Card -->
-<div class="card">
+    <!-- =========================================
+         LEFT IMAGE
+    ========================================== -->
 
-    <h1>🎂 Happy Birthday Vinay Sir 🎂</h1>
+    <img
+        src="img1.jpg"
+        alt="Birthday Image 1"
+        class="side-image left-image"
+    >
 
-    <h2 class="typing">
-        Wishing You Success, Happiness & Good Health!
-    </h2>
 
-    <br><br>
+    <!-- =========================================
+         RIGHT IMAGE
+    ========================================== -->
 
-    <p class="message">
-        Dear <span class="highlight">Vinay Sir</span>,
-        <br><br>
+    <img
+        src="img2.jpg"
+        alt="Birthday Image 2"
+        class="side-image right-image"
+    >
 
-        On your special day, may your year be filled with
-        success, happiness, good health, and countless achievements.
-        Thank you for your guidance, support, and inspiration.
 
-        <br><br>
+    <!-- =========================================
+         MAIN FLIP CARD
+    ========================================== -->
 
-        May every dream you pursue turn into reality and
-        every challenge become an opportunity for growth.
+    <div class="flip-container">
 
-        <br><br>
+        <div
+            class="flip-card"
+            id="flipCard"
+        >
 
-        🎉 Have a Wonderful Birthday and an Amazing Year Ahead! 🎉
-    </p>
 
-</div>
+            <!-- =====================================
+                 FRONT — IMG3
+            ====================================== -->
 
-<script>
+            <div class="flip-front">
 
-/* Generate Confetti */
+                <img
+                    src="img3.jpg"
+                    alt="Birthday Image 3"
+                >
 
-for(let i=0;i<80;i++){
+            </div>
 
-    let confetti=document.createElement("div");
-    confetti.classList.add("confetti");
 
-    confetti.style.left=Math.random()*100+"vw";
-    confetti.style.animationDuration=(Math.random()*5+3)+"s";
-    confetti.style.opacity=Math.random();
+            <!-- =====================================
+                 BACK — BIRTHDAY CARD
+            ====================================== -->
 
-    const colors=["#ff6b6b","#feca57","#48dbfb","#1dd1a1","#ff9ff3"];
-    confetti.style.background=
-        colors[Math.floor(Math.random()*colors.length)];
+            <div class="flip-back">
 
-    document.body.appendChild(confetti);
-}
 
-</script>
+                <!-- Floating balloons -->
+
+                <div class="card-balloon one">
+                    🎈
+                </div>
+
+                <div class="card-balloon two">
+                    🎈
+                </div>
+
+                <div class="card-balloon three">
+                    🎉
+                </div>
+
+                <div class="card-balloon four">
+                    🎉
+                </div>
+
+
+                <!-- Birthday content -->
+
+                <div class="birthday-content">
+
+
+                    <h1>
+
+                        🎂 Belated Happy Birthday
+                        Vinay Bau Jii (Sir) 🎂
+
+                    </h1>
+
+
+                    <h2 class="typing">
+
+                        Wishing You Success,
+                        Happiness & Good Health!
+
+                    </h2>
+
+
+                    <p class="message">
+
+                        Dear
+
+                        <span class="highlight">
+                            Vinay Sir
+                        </span>,
+
+                        <br>
+                        <br>
+
+                        May your year be filled with
+                        success, happiness, good health,
+                        and countless achievements.
+
+                        <br>
+                        <br>
+
+                        May every dream you pursue
+                        turn into reality and every
+                        challenge become an opportunity
+                        for growth.
+
+                        <br>
+                        <br>
+
+                        🎉 Have a Wonderful and an
+                        Amazing Year Ahead! 🎉
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         OUTSIDE BALLOONS
+    ========================================== -->
+
+    <div class="balloon">🎈</div>
+
+    <div class="balloon">🎈</div>
+
+    <div class="balloon">🎈</div>
+
+    <div class="balloon">🎈</div>
+
+
+    <script>
+
+
+        /* =========================================
+           ELEMENTS
+        ========================================= */
+
+        const flipCard =
+            document.getElementById(
+                "flipCard"
+            );
+
+
+        /* =========================================
+           SETTINGS
+        ========================================= */
+
+        const FLIP_DURATION = 2000;
+
+        /*
+            Full 2-minute display
+            after the card appears.
+        */
+
+        const CARD_DISPLAY_TIME = 120000;
+
+
+        /*
+            Small pause while
+            image is visible.
+        */
+
+        const IMAGE_DISPLAY_TIME = 3000;
+
+
+        /* =========================================
+           FLIP TO BIRTHDAY CARD
+        ========================================= */
+
+        function flipToBirthdayCard() {
+
+            flipCard.classList.add(
+                "flipped"
+            );
+
+        }
+
+
+        /* =========================================
+           FLIP BACK TO IMAGE
+        ========================================= */
+
+        function flipToImage() {
+
+            flipCard.classList.remove(
+                "flipped"
+            );
+
+        }
+
+
+        /* =========================================
+           FIRST ANIMATION
+        ========================================= */
+
+        /*
+            Start with img3.jpg.
+
+            Wait 2 seconds.
+
+            Then flip to
+            birthday card.
+        */
+
+        setTimeout(() => {
+
+            flipToBirthdayCard();
+
+        }, 2000);
+
+
+        /* =========================================
+           MAIN 2-MINUTE CYCLE
+        ========================================= */
+
+        function startCycle() {
+
+
+            /*
+                Card remains visible
+                for 120 seconds.
+            */
+
+            setTimeout(() => {
+
+
+                /*
+                    Flip birthday card
+                    back to img3.jpg.
+                */
+
+                flipToImage();
+
+
+                /*
+                    Keep img3 visible
+                    for 3 seconds.
+                */
+
+                setTimeout(() => {
+
+
+                    /*
+                        Flip back to
+                        birthday card.
+                    */
+
+                    flipToBirthdayCard();
+
+
+                    /*
+                        Start the next
+                        2-minute cycle.
+                    */
+
+                    startCycle();
+
+
+                }, IMAGE_DISPLAY_TIME);
+
+
+            }, CARD_DISPLAY_TIME);
+
+        }
+
+
+        /*
+            Start the cycle.
+        */
+
+        startCycle();
+
+
+        /* =========================================
+           CONFETTI
+        ========================================= */
+
+        for (
+            let i = 0;
+            i < 100;
+            i++
+        ) {
+
+            const confetti =
+                document.createElement(
+                    "div"
+                );
+
+
+            confetti.classList.add(
+                "confetti"
+            );
+
+
+            confetti.style.left =
+                Math.random() * 100 + "vw";
+
+
+            confetti.style.animationDuration =
+                (
+                    Math.random() * 5 + 3
+                ) + "s";
+
+
+            confetti.style.animationDelay =
+                (
+                    Math.random() * 5
+                ) + "s";
+
+
+            confetti.style.opacity =
+                Math.random();
+
+
+            const colors = [
+
+                "#ff6b6b",
+                "#feca57",
+                "#48dbfb",
+                "#1dd1a1",
+                "#ff9ff3"
+
+            ];
+
+
+            confetti.style.background =
+                colors[
+                    Math.floor(
+                        Math.random() *
+                        colors.length
+                    )
+                ];
+
+
+            document.body.appendChild(
+                confetti
+            );
+
+        }
+
+    </script>
+
 
 </body>
+
 </html>
